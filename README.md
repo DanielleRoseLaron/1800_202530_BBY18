@@ -58,6 +58,7 @@ elmo-hikes/
 - Danielle Laron - BCIT CST Student with a passion for art and learning. Fun fact: I have a lot of siblings!
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
+- **Aayush Aggarwal** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves learning new things.
 - **Evelyn L** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
 
 ---
