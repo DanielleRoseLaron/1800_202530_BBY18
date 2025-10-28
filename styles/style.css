@@ -1,3 +1,33 @@
 .custom-navbar-color {
   background-color: #ff5733;
 }
+
+/* for task page, mostly placeholder 
+of what things will look like for now. personal note for dan to
+edit later
+*/
+
+#listtitle {
+  padding-top: 2vh;
+  margin: 5vh;
+  text-align: center;
+}
+
+.list {
+  padding-top: 2vh;
+  margin: 5vh;
+  border-radius: 10dvh;
+  border: 2px rgb(226, 226, 226) solid;
+  background-color: rgb(226, 226, 226);
+  list-style-position: inside;
+  text-align: center;
+}
+
+#placeholderlist {
+  padding: 2vh;
+}
+
+#addbutton {
+  margin-bottom: 12vh;
+}
+/* task page end */
