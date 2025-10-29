@@ -6,6 +6,10 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script type="module" src="/src/components/site-navbar.js"></script>
+        <script type="module" src="/src/components/site-footer.js"></script>
+        <!-- <link rel="stylesheet" href="style.css"> -->
         <!-- Other libraries go here -->
         <!-- Link to styles of your own -->
         <!-- <link rel="stylesheet" href="./styles/style.css"> -->
@@ -15,6 +19,7 @@
         <!-- Your HTML Layout go here -->
         <!------------------------------>
         <!-- Stuff for body goes here -->
+        <site-navbar></site-navbar>
         <!---------------------------------------------->
         <!-- Your own JavaScript functions go here    -->
         <!---------------------------------------------->
@@ -48,66 +53,6 @@
     <!------------------------------>
     <!-- Stuff for body goes here -->
 
-    <!-- Top nav row -->
-    <div
-      class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom bg-success"
-    >
-      <!-- Dropdown menu -->
-      <div class="dropdown">
-        <button
-          class="btn btn-secondary"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <!--Dropdown img-->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            class="bi bi-list"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 
-           0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 
-           .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 
-           0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 
-           0 0 1-.5-.5"
-            />
-          </svg>
-        </button>
-
-        <!--dropdown items-->
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Home</a></li>
-          <li><a class="dropdown-item" href="#">Leaderboard</a></li>
-          <li><a class="dropdown-item" href="#">Add/Edit goals</a></li>
-        </ul>
-      </div>
-
-      <!-- search -->
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-
-      <!-- Profile icon -->
-      <img
-        src="images/proflie-image.jpg"
-        alt="Profile"
-        class="rounded-circle"
-        width="32"
-        height="32"
-      />
-    </div>
     <div class="jumbotron">
       <h1 class="display-4">Taskify</h1>
       <p class="lead">
@@ -136,7 +81,7 @@
         </div>
     </div>
 
-
+    <!-- CTA -->
     <div class="px-4 py-5 my-5 text-center">
         <img
             class="d-block mx-auto mb-4"
@@ -153,10 +98,12 @@
             </div>
         </div>
     </div>
+    <!-- CTA -->
+     
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
-
+    <site-footer></site-footer>
     <!-- Link to scripts of your own -->
     <!-- <script type="module" src="./src/main.js"></script> -->
   </body>
