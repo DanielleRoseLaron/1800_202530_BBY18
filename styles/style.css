@@ -31,3 +31,16 @@ edit later
   margin-bottom: 12vh;
 }
 /* task page end */
+
+/*profile page start */
+.acc_button,
+.progress_button,
+.log_button {
+  padding-top: 2vh;
+  margin: 5vh;
+  border-radius: 10dvh;
+  border: 2px rgb(226, 226, 226) solid;
+  background-color: rgb(226, 226, 226);
+  list-style-position: inside;
+  text-align: center;
+}
