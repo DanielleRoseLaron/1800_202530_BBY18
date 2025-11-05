@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Game</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        margin: 0;
+        background: #f8f9fc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .screen {
+        width: 400px;
+        height: 640px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+      }
+
+      .screen.active {
+        display: flex;
+        animation: fadeIn 0.5s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+
+      button {
+        background: #8f6dfd;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: all 0.2s ease;
+      }
+
+      button:hover {
+        background: #7a5bf2;
+      }
+
+      .pet-option {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f3f1ff;
+        border: 2px solid #dcd7ff;
+        border-radius: 12px;
+        padding: 10px 15px;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .pet-option:hover {
+        background: #e9e4ff;
+      }
+
+      .avatar-display {
+        width: 90%;
+        height: 250px;
+        border-radius: 15px;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f1efff;
+      }
+
+      .accessories {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .accessory {
+        width: 50px;
+        height: 50px;
+        background: #f1efff;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .accessory.locked {
+        opacity: 0.5;
+      }
+
+      .accessory.locked::after {
+        content: "🔒";
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        border-radius: 50%;
+        padding: 2px 5px;
+        font-size: 12px;
+      }
+
+      .action-buttons {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .progress-bar {
+        width: 80%;
+        height: 15px;
+        border-radius: 10px;
+        background: #e0e0e0;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+
+      .progress {
+        height: 100%;
+        background: linear-gradient(90deg, #ff7a7a, #ffcc70);
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        width: 80%;
+        border-radius: 10px;
+        border: 2px solid #ddd;
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .back {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-size: 18px;
+        background: transparent;
+        border: none;
+        color: #8f6dfd;
+        cursor: pointer;
+      }
+
+      .popup {
+        position: absolute;
+        bottom: 20px;
+        background: #ff7a7a;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        animation: fadeOut 3s forwards;
+      }
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .points-display {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Screen 1: Choose Pet -->
+    <div class="screen active" id="screen1">
+      <h2>Choose a Pet</h2>
+      <div class="pet-option" onclick="selectPet('dog')">🐶 Dog</div>
+      <div class="pet-option" onclick="selectPet('cat')">🐱 Cat</div>
+      <div class="pet-option" onclick="selectPet('bird')">🐦 Bird</div>
+    </div>
+
+    <!-- Screen 2: Select Avatar -->
+    <div class="screen" id="screen2">
+      <button class="back" onclick="goBack(1)">←</button>
+      <h2>Select Avatar</h2>
+      <button onclick="showPet()">Show the Pet</button>
+      <div class="avatar-display" id="avatarDisplay">Pet Preview</div>
+      <div class="accessories">
+        <div class="accessory" onclick="customize('clothes')">👕</div>
+        <div class="accessory locked" onclick="attemptUnlock('glasses')">
+          🕶️
+        </div>
+        <div class="accessory locked" onclick="attemptUnlock('shoes')">👟</div>
+        <div class="accessory" onclick="customize('collar')">🪪</div>
+      </div>
+      <button onclick="nextScreen(3)">Continue</button>
+    </div>
+
+    <!-- Screen 3: Main Game -->
+    <div class="screen" id="screen3">
+      <h2><input type="text" id="petName" placeholder="Enter Name Here" /></h2>
+      <div class="avatar-display" id="mainAvatar"></div>
+      <p>Lvl. 1</p>
+      <div class="progress-bar">
+        <div class="progress" id="happinessBar" style="width: 70%"></div>
+      </div>
+      <label>Happiness</label>
+      <div class="progress-bar">
+        <div class="progress" id="hungerBar" style="width: 50%"></div>
+      </div>
+      <label>Hunger</label>
+      <div class="points-display">
+        Points: <span id="pointsDisplay">100</span>
+      </div>
+      <div class="action-buttons">
+        <button onclick="feedPet()">Feed 🍖</button>
+        <button onclick="openShop()">Shop 🏪</button>
+        <button onclick="goBack(2)">Change Avatar 🎨</button>
+      </div>
+    </div>
+
+    <!-- Screen 4: Shop -->
+    <div class="screen" id="screen4">
+      <button class="back" onclick="goBack(3)">←</button>
+      <h2>Shop</h2>
+      <button onclick="purchase('food')">Buy Food (10 pts)</button>
+      <button onclick="purchase('toy')">Buy Toy (15 pts)</button>
+      <button onclick="purchase('cat')">Unlock Cat (50 pts)</button>
+      <button onclick="purchase('bird')">Unlock Bird (50 pts)</button>
+    </div>
+
+    <script>
+      let ownedPets = ["dog"]; // You can modify this for testing: ['dog', 'cat'], ['cat', 'bird'], etc.
+      let selectedPet = null;
+      let userPoints = 100; // Change this for testing
+      let foodCount = 3;
+      let happiness = 70;
+      let hunger = 50;
+
+      function updatePointsDisplay() {
+        document.getElementById("pointsDisplay").textContent = userPoints;
+      }
+
+      function selectPet(pet) {
+        selectedPet = pet;
+        nextScreen(2);
+      }
+
+      function nextScreen(num) {
+        document
+          .querySelectorAll(".screen")
+          .forEach((s) => s.classList.remove("active"));
+        document.getElementById("screen" + num).classList.add("active");
+        if (num === 3) {
+          updateMainAvatar();
+          updatePointsDisplay();
+          updateHappinessBar();
+          updateHungerBar();
+        }
+      }
+
+      function goBack(num) {
+        document
+          .querySelectorAll(".screen")
+          .forEach((s) => s.classList.remove("active"));
+        document.getElementById("screen" + num).classList.add("active");
+        updatePointsDisplay();
+      }
+
+      function showPet() {
+        const avatar = document.getElementById("avatarDisplay");
+        avatar.style.backgroundImage = `url('${selectedPet}_blank.jpg')`;
+        avatar.textContent = "";
+      }
+
+      //   function updateMainAvatar() {
+      //     const main = document.getElementById("mainAvatar");
+      //     main.style.backgroundImage = `url('images/BckNoPetCDB.png')`;
+      //     main.textContent = "";
+      //   }
+      function updateMainAvatar() {
+        const main = document.getElementById("mainAvatar");
+        let imagePath = "";
+
+        const hasDog = ownedPets.includes("dog");
+        const hasCat = ownedPets.includes("cat");
+        const hasBird = ownedPets.includes("bird");
+
+        if (hasDog && !hasCat && !hasBird) {
+          imagePath = "/images/BckNoPetCDB.png";
+        } else if (!hasDog && hasCat && !hasBird) {
+          imagePath = "/images/y.png";
+        } else if (!hasDog && !hasCat && hasBird) {
+          imagePath = "/images/z.png";
+        } else if (hasDog && hasCat && !hasBird) {
+          imagePath = "/images/a.png";
+        } else if (hasDog && !hasCat && hasBird) {
+          imagePath = "/images/b.png";
+        } else if (!hasDog && hasCat && hasBird) {
+          imagePath = "/images/c.png";
+        } else if (hasDog && hasCat && hasBird) {
+          imagePath = "/images/d.png";
+        } else {
+          imagePath = "/images/default.png"; // fallback image
+        }
+
+        main.style.backgroundImage = `url('${imagePath}')`;
+        main.textContent = "";
+      }
+
+      function feedPet() {
+        if (foodCount > 0) {
+          foodCount--;
+          happiness = Math.min(happiness + 10, 100);
+          hunger = Math.min(hunger + 20, 100);
+          updateHappinessBar();
+          updateHungerBar();
+        } else {
+          showPopup("Out of Food");
+        }
+      }
+
+      function updateHappinessBar() {
+        document.getElementById("happinessBar").style.width = happiness + "%";
+      }
+
+      function updateHungerBar() {
+        document.getElementById("hungerBar").style.width = hunger + "%";
+      }
+
+      function showPopup(message) {
+        const popup = document.createElement("div");
+        popup.className = "popup";
+        popup.textContent = message;
+        document.body.appendChild(popup);
+        setTimeout(() => popup.remove(), 3000);
+      }
+
+      function openShop() {
+        nextScreen(4);
+      }
+
+      function purchase(item) {
+        const costs = { food: 10, toy: 15, cat: 50, bird: 50 };
+        if (userPoints >= costs[item]) {
+          userPoints -= costs[item];
+          updatePointsDisplay();
+          if (item === "food") foodCount += 3;
+          showPopup(
+            `${item.charAt(0).toUpperCase() + item.slice(1)} purchased!`
+          );
+        } else {
+          showPopup("Insufficient points");
+        }
+      }
+
+      function attemptUnlock(item) {
+        const cost = 20;
+        if (userPoints >= cost) {
+          userPoints -= cost;
+          updatePointsDisplay();
+          const el = document.querySelector(`.accessory[onclick*="${item}"]`);
+          if (el) el.classList.remove("locked");
+          showPopup(
+            `${item.charAt(0).toUpperCase() + item.slice(1)} unlocked!`
+          );
+        } else {
+          showPopup(`${item.charAt(0).toUpperCase() + item.slice(1)} locked!`);
+          setTimeout(() => showPopup("Insufficient points"), 500);
+        }
+      }
+
+      function customize(type) {
+        showPopup(`Customize ${type} (feature coming soon)`);
+      }
+
+      // For testing: change points manually
+      userPoints = 100; // You can change this value for testing
+      updatePointsDisplay();
+    </script>
+  </body>
+</html>

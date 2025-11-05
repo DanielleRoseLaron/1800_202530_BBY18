@@ -1,0 +1,76 @@
+:root{
+  --bg:#f5f7fb; --card:#fff; --accent:#8f6dfd; --muted:#7d8790;
+}
+*{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+html,body{height:100%;margin:0;background:var(--bg);color:#122}
+.topbar{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:linear-gradient(180deg,#fff,#fbfbff);box-shadow:0 2px 8px rgba(10,10,20,0.04)}
+.brand{font-weight:700;color:var(--accent)}
+.meta{display:flex;gap:14px;color:var(--muted)}
+
+/* pager wrapper: fixed size to resemble your sketch pages */
+.pager{width:360px;height:640px;margin:22px auto;position:relative;overflow:hidden;border-radius:14px;box-shadow:0 12px 40px rgba(30,30,60,0.08);background:transparent}
+.page{position:absolute;top:0;left:0;width:100%;height:100%;padding:18px;background:var(--card);transform:translateX(100%);transition:transform .42s cubic-bezier(.2,.9,.2,1);display:flex;flex-direction:column;align-items:stretch;gap:10px}
+.page.active{transform:translateX(0)}
+/* We'll programmatically position left/center/right positions.
+   left page index -> -100% (page1), center 0 (page2), right +100% (page3) */
+
+/* simple headings similar to your sketch */
+h2{margin:0;font-size:20px;text-align:center}
+
+/* Choose page */
+.choose-list{display:flex;flex-direction:column;gap:12px;align-items:center;padding-top:6px;overflow:auto}
+.pet-card{width:90%;border-radius:12px;padding:12px;background:linear-gradient(180deg,#fff,#fcfbff);box-shadow:0 6px 20px rgba(20,20,50,0.06);display:flex;gap:12px;align-items:center;cursor:pointer;position:relative}
+.pet-thumb{width:110px;height:84px;border-radius:8px;background-size:cover;background-position:center;border:1px solid #eee}
+.pet-info{flex:1}
+.pet-title{font-weight:700}
+.pet-sub{color:var(--muted);font-size:13px;margin-top:6px}
+.pet-price{position:absolute;right:12px;top:12px;background:var(--accent);color:#fff;padding:6px 8px;border-radius:8px;font-size:13px}
+
+/* arrows */
+.arrow{position:absolute;bottom:14px;right:14px;border:0;background:var(--accent);color:#fff;padding:10px 12px;border-radius:10px;cursor:pointer}
+.arrow.left{left:12px;right:auto;background:transparent;color:var(--accent);font-weight:700}
+
+/* Avatar page layout */
+.avatar-main{display:flex;gap:14px;align-items:flex-start;flex:1}
+.avatar-preview{width:48%;height:420px;border-radius:12px;background:linear-gradient(180deg,#fff,#f9f9ff);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.avatar-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.95}
+.avatar-base{max-width:78%;max-height:78%;position:relative;z-index:2}
+.avatar-acc{position:absolute;z-index:3;max-width:78%;max-height:78%;pointer-events:none}
+.avatar-controls{flex:1;display:flex;flex-direction:column;gap:8px;padding:6px 4px}
+.row{display:flex;gap:8px;align-items:center}
+.options-row{display:flex;gap:8px;flex-wrap:wrap}
+.item{width:64px;height:64px;border-radius:8px;background:#fff;border:1px solid #f0eff9;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
+.item.locked::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.20),rgba(0,0,0,0.12));border-radius:8px}
+.lockBadge{position:absolute;right:6px;top:6px;background:rgba(0,0,0,0.55);color:#fff;padding:3px;border-radius:6px;font-size:12px}
+
+/* Game page */
+.game-top{display:flex;flex-direction:column;gap:10px;align-items:center}
+.name-box input{width:86%;padding:10px;border-radius:10px;border:1px solid #eee;text-align:center}
+.game-preview{width:72%;height:260px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfbff);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.game-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.95}
+.game-base{z-index:2;max-width:78%;max-height:78%}
+.game-acc{position:absolute;z-index:3;max-width:78%;max-height:78%}
+.stats{width:86%;display:flex;flex-direction:column;align-items:center;gap:8px}
+.bar-outer{width:96%;height:12px;background:#eee;border-radius:999px;overflow:hidden}
+.bar-inner{height:100%;width:30%;background:linear-gradient(90deg,#ffd36b,#ff7a7a)}
+
+/* actions */
+.game-actions{display:flex;gap:10px;justify-content:center}
+button{background:var(--accent);color:#fff;border:0;padding:10px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+button.ghost{background:transparent;border:2px solid #f0efff;color:var(--accent)}
+
+/* Shop standalone */
+.page-standalone{max-width:940px;margin:20px auto;padding:18px;background:var(--card);border-radius:12px;box-shadow:0 12px 40px rgba(30,30,60,0.06);display:none}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.shop-item{background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 20px rgba(20,20,60,0.04)}
+
+/* toast */
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#111;color:#fff;padding:10px 14px;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.hidden{display:none}
+
+/* small screens adapt */
+@media (max-width:420px){
+  .pager{width:340px;height:740px}
+  .avatar-main{flex-direction:column}
+  .avatar-preview{height:340px}
+}
