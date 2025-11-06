@@ -1,0 +1,114 @@
+/* index */
+
+#circle1, #circle2,
+#square1, #square2,
+#triangle1, #triangle2,
+#triangle3, #triangle4, #triangle5, #triangle6 {
+    position: absolute;
+    z-index: 0;
+}
+
+#circle1 {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #075856;
+    top: 20px;
+    right: 10%;
+}
+
+#circle2 {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: #0b3844;
+    bottom: 0px;
+    left: 10%;
+}
+
+#square1 {
+    width: 100px;
+    height: 100px;
+    background: #429b9e;
+    bottom: 50px;
+    right: 10%;
+    transform: rotate(20deg);
+}
+
+#square2 {
+    width: 80px;
+    height: 80px;
+    background: #b9e2e0;
+    top: 60px;
+    left: 8%;
+    transform: rotate(120deg);
+
+}
+
+#triangle1 {
+    width: 0;
+    height: 0;
+    border-bottom: 60px solid #b9e2e0;
+    border-left: 120px solid transparent;
+    border-right: 60px solid transparent;
+    top: 50px;
+    right: 15%;
+    transform: rotate(330deg);
+}
+
+#triangle2 {
+    width: 0;
+    height: 0;
+    border-bottom: 50px solid #1a2467;
+    border-left: 20px solid transparent;
+    border-right: 40px solid transparent;
+    top: 40%;
+    left: 10%;
+    transform: rotate(-80deg);
+}
+
+#triangle3 {
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid #084041;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    bottom: 10%;
+    right: 10%;
+    transform: rotate(120deg);
+}
+
+#triangle4 {
+    width: 0;
+    height: 0;
+    border-bottom: 70px solid #168482;
+    border-left: 140px solid transparent;
+    border-right: 25px solid transparent;
+    bottom: 15%;
+    left: 15%;
+    transform: rotate(190deg);
+}
+
+#triangle5 {
+    width: 0;
+    height: 0;
+    border-bottom: 140px solid #168482;
+    border-left: 140px solid transparent;
+    border-right: 25px solid transparent;
+    top: 10%;
+    left: 15%;
+    transform: rotate(245deg);
+}
+
+#triangle6 {
+    width: 0;
+    height: 0;
+    border-bottom: 50px solid #1a2467;
+    border-left: 20px solid transparent;
+    border-right: 40px solid transparent;
+    top: 40%;
+    right: 10%;
+    transform: rotate(80deg);
+}
+
+/* index */

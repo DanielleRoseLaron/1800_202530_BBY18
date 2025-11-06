@@ -1,6 +1,62 @@
-/* .custom-navbar-color {
-  background-color: #ff5733;
-} */
+/* index page */
+
+.CTA {
+  background-size: 100% 80%;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(180deg, #24935f, white);
+  position:relative;
+  overflow: hidden;
+  margin-bottom: 5%;
+}
+
+.ctacontent {
+  position: relative;
+  z-index: 1;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.descriptionContainer {
+  display: grid;
+  grid-template-areas:
+    'rowone rowone'
+    'rowtwo rowtwo';
+  grid-template-columns: 1fr 1fr;
+  background-color: white;
+  border: 2px solid white;
+  padding: 2rem;
+}
+
+.jumbotron {
+  grid-area: rowone;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jumbotron img {
+  border-radius: 50%;
+  
+}
+
+.petsinfo {
+  grid-area: rowtwo;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#petsleft {
+  padding: 5%;
+}
+
+.petsinfo img {
+  border-radius: 50%;
+}
+
+
+
+/* index page */
 
 /* for task page, mostly placeholder 
 of what things will look like for now. personal note for dan to
@@ -30,6 +86,7 @@ edit later
 #addbutton {
   margin-bottom: 12vh;
 }
+
 /* task page end */
 
 /*profile page start */
@@ -44,3 +101,5 @@ edit later
   list-style-position: inside;
   text-align: center;
 }
+
+/* profile page end */
