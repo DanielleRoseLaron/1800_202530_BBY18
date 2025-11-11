@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const homeButton = document.getElementById("home");
 
-  if (progressDiv) {
-    progressDiv.addEventListener("click", () => {
+  if (homeButton) {
+    homeButton.addEventListener("click", () => {
       window.location.href = "taskpage.html";
     });
   }
