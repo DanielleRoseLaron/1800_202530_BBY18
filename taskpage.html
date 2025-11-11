@@ -54,11 +54,20 @@
 
     <!-- Top nav row -->
 
-    <!-- task list **UPDATE LATER FOR FUNCTIONALITY**-->
-    <div id="listtitle">
-      <h1>Your Goals</h1>
-      <span class="material-icons" style="font-size: xxx-large;">track_changes</span>
+    <div class="container-fluid text-dark">
+        <div class="container p-5">
+            <h1 class="display-4">Welcome,
+                <span id="name-goes-here"></span>
+                <div id="listtitle">
+                    Here are your goals
+                    <span class="material-icons" style="font-size: xx-large;">track_changes</span>
+                </div>
+            </h1>
+            <hr>
+        </div>
     </div>
+
+    <!-- task list **UPDATE LATER FOR FUNCTIONALITY**-->
     <div class="list">
         <ul id="placeholderlist">
             <li>placeholder remove later</li>
@@ -82,6 +91,12 @@
     <site-footer></site-footer>
     <!-- Link to scripts of your own -->
     <!-- <script type="module" src="./src/main.js"></script> -->
+    <script type="module" src="/src/app.js"></script>
+    <script type="module" src="/src/main.js"></script>
+    <!-- Firebase and authentication related scripts -->
+    <script type="module" src="/src/firebaseConfig.js"></script>
+    <script type="module" src="/src/authentication.js"></script>
+    <script type="module" src="/src/loginSignup.js"></script>
 </body>
 
 </html>

@@ -28,3 +28,10 @@ function showDashboard() {
 }
 
 showDashboard();
+
+// Adding a task - Dan
+document.getElementById('addbutton').addEventListener('click', function() {
+    window.location.href = 'addtask.html';
+});
+
+// Adding task end

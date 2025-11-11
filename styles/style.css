@@ -1,10 +1,17 @@
+/* bootstrap colour override */
+.bg-success {
+  background-color: #129794 !important;
+}
+/* bootstrap colour override */
+
+
 /* index page */
 
 .CTA {
   background-size: 100% 80%;
   background-repeat: no-repeat;
-  background-image: linear-gradient(180deg, #24935f, white);
-  position:relative;
+  background-image: linear-gradient(180deg, #0c96a5, white);
+  position: relative;
   overflow: hidden;
   margin-bottom: 5%;
 }
@@ -36,7 +43,7 @@
 
 .jumbotron img {
   border-radius: 50%;
-  
+
 }
 
 .petsinfo {
@@ -64,17 +71,16 @@ edit later
 */
 
 #listtitle {
+  font-size: 5vh;
   padding-top: 2vh;
-  margin: 5vh;
-  text-align: center;
 }
 
 .list {
   padding-top: 2vh;
-  margin: 5vh;
+  margin: 2vh;
   border-radius: 10dvh;
-  border: 2px rgb(226, 226, 226) solid;
-  background-color: rgb(226, 226, 226);
+  border: 2px #93a8b0 solid;
+  background-color: #93a8b0;
   list-style-position: inside;
   text-align: center;
 }
