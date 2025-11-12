@@ -66,12 +66,12 @@ async function saveUserInfo() {
 
     //a) get user entered values
     const userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-    const userSchool = document.getElementById('schoolInput').value;     //get the value of the field with id="schoolInput"
     const userCity = document.getElementById('cityInput').value; 
-    const userTerm = document.getElementById('termInput').value;      //get the value of the field with id="cityInput"
+    const userSchool = document.getElementById('schoolInput').value;     //get the value of the field with id="schoolInput"
+    const userProgram = document.getElementById('programInput').value;      //get the value of the field with id="cityInput"
 
     //b) update user's document in Firestore
-    await updateUserDocument(user.uid, userName, userSchool, userCity, userTerm);
+    await updateUserDocument(user.uid, userName, userSchool, userCity, userProgram);
     //c) disable edit 
 }
 

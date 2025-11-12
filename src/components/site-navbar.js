@@ -2,7 +2,7 @@ class SiteNavbar extends HTMLElement {
   constructor() {
     super();
     this.renderNavbar();
-    this.renderAuthControls();
+    // this.renderAuthControls();
   }
 
   renderNavbar() {
