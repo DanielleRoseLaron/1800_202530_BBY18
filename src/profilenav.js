@@ -1,5 +1,4 @@
-// nav.js
-
+//profile page: go to progress page
 document.addEventListener("DOMContentLoaded", () => {
   const progressDiv = document.getElementById("progress");
 
