@@ -46,7 +46,7 @@ populateUserInfo();
 //-------------------------------------------------------------
 // Function to enable editing of user info form fields
 //------------------------------------------------------------- 
-document.querySelector('#editButton').addEventListener('click', editUserInfo);
+document.querySelector('.editButton').addEventListener('click', editUserInfo);
 function editUserInfo() {
     //Enable the form fields
     document.getElementById('personalInfoFields').disabled = false;

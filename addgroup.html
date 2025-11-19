@@ -32,31 +32,27 @@
   <!------------------------------>
   <!-- Stuff for body goes here -->
 
-  <div class="add-goals">
-    <div class="goal-icon">
-      <!--profile picture-->
+  <div class="add-group">
+    <div class="goal-profile">
       <div class="goal_pic text-center">
-        <span class="material-icons">target</span>
+        <span class="material-icons rounded"> target </span>
       </div>
 
       <div class="profile-text">
         <p class="text-center display-5 fw-bold text-body-emphasis">
-          Goal name
+          Group name
         </p>
       </div>
 
       <!-- Updated to be a form instead to be consistent -->
-      <form id="goalForm" class="text-center">
+      <form id="groupForm" class="text-center">
         <fieldset class="mb-3">
           <!-- goal name -->
-          <div class="goalForm">
-            <input type="text" id="goalInput" name="goalInput" class="form-control" placeholder="Goal name" required />
-            <!-- <input type="date" id="goalDate" name="goalDate" required /> -->
+          <div class="groupForm">
+            <input type="text" id="groupInput" name="groupInput" class="form-control" placeholder="Group name" required />
           </div>
-          <!-- goal end date (IN PROGRESS)-->
-          <!-- more coming later -->
           <div class="mt-5 text-center">
-            <button id="saveGoal" type="submit" class="btn btn-success">Save</button>
+            <button id="saveGroup" type="submit" class="btn btn-success">Save</button>
           </div>
         </fieldset>
       </form>
@@ -69,7 +65,7 @@
   <site-footer></site-footer>
   <!-- Link to scripts of your own -->
   <!-- <script type="module" src="./src/main.js"></script> -->
-  <script type="module" src="./src/addtask.js"></script>
+  <script type="module" src="./src/addgroup.js"></script>
 </body>
 
 </html>

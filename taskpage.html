@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
   <head>
     <title>My BCIT Project</title>
     <meta name="comp1800 template" content="My 1800 App" />
@@ -30,6 +32,9 @@
     <script type="module" src="/src/components/site-footer.js"></script>
 
     <!-- Link to styles of your own -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="module" src="/src/components/site-navbar.js"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
@@ -39,7 +44,7 @@
     <site-navbar></site-navbar>
     <!------------------------------>
     <!-- Stuff for body goes here -->
-
+    <site-navbar></site-navbar>
     <!-- Top nav row -->
 
     <div class="container-fluid text-dark">
@@ -58,8 +63,28 @@
       </div>
     </div>
 
+    <!-- Top action buttons row -->
+    <div class="my-3 gap-2">
+        <!-- Add Goal -->
+        <button id="addbutton" type="button" class="btn btn-primary">
+            <span class="material-icons" style="font-size: 28px;">add_circle</span>
+        </button>
+        <!-- Add Goal -->
+        <!-- Edit Goal -->
+        <button id="editGoalButton" type="button" class="btn btn-secondary">
+            <span class="material-icons" style="font-size: 28px;">edit</span>
+        </button>
+        <!-- Edit Goal -->
+    </div>
     <!-- task list -->
+    <!-- The old placeholder was removed and the list now updates as a user creates a goal -->
     <div class="list">
+        <div id="placeholderlist">
+            <p>Your first goal is to create a goal!</p>
+        </div>
+    </div>
+    <!-- task list -->
+    <br><br><br><br><br><br><br><br>
       <ul id="placeholderlist">
         <li>Your first goal is to create a goal!</li>
       </ul>
@@ -87,6 +112,10 @@
     <script type="module" src="/src/main.js"></script>
     <!-- Firebase and authentication related scripts -->
     <script type="module" src="/src/firebaseConfig.js"></script>
+    <script type="module" src="/src/tasks.js"></script>
+</body>
+
+</html>
     <script type="module" src="/src/authentication.js"></script>
     <script type="module" src="/src/loginSignup.js"></script>
   </body>
