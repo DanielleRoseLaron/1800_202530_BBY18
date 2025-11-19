@@ -2,6 +2,15 @@
 .bg-success {
   background-color: #09909f !important;
 }
+
+.btn-primary {
+  background-color: #0a4e89 !important;
+}
+
+.btn-secondary {
+  background-color: #14aba1 !important;
+}
+
 /* bootstrap colour override */
 
 
@@ -78,19 +87,28 @@ edit later
 .list {
   padding-top: 2vh;
   margin: 2vh;
-  border-radius: 10dvh;
-  border: 2px #93a8b0 solid;
-  background-color: #93a8b0;
+  border-radius: 1dvh;
+  border: 2px #09909f solid;
+  background-color: #09909f;
   list-style-position: inside;
-  text-align: center;
 }
 
-#placeholderlist {
+.list p {
+  margin: 1vh;
+  border-radius: 1dvh;
+  border: 8px #ffffff solid;
+  background-color: #ffffff;
+}
+
+#placeholderlist, #placeholdergroups {
   padding: 2vh;
 }
 
-#addbutton {
-  margin-bottom: 12vh;
+
+#addbutton, #editGoalButton,
+#addGroupButton, #editGroupButton {
+  padding-top: 12px;
+  margin: 2vh;
 }
 
 /* task page end */
@@ -109,3 +127,11 @@ edit later
 }
 
 /* profile page end */
+
+
+/* addtask page */
+.goalForm {
+  margin: 40px;
+}
+
+/* addtask page */
