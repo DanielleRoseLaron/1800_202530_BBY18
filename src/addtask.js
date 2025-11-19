@@ -4,8 +4,6 @@ import { db } from './firebaseConfig.js';
 import { collection, addDoc } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth();
-import { db } from "./firebaseConfig.js";
-import { collection, addDoc } from "firebase/firestore";
 
 // Waits to load content at the right time
 document.addEventListener("DOMContentLoaded", () => {
