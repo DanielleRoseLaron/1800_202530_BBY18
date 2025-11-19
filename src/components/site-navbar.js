@@ -39,9 +39,9 @@ class SiteNavbar extends HTMLElement {
                     </button>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Home</a></li>
-                        <li><a class="dropdown-item" href="#">Leaderboard</a></li>
-                        <li><a class="dropdown-item" href="#">Add/Edit goals</a></li>
+                        <li><a class="dropdown-item" href="taskpage.html">Home</a></li>
+                        <li><a class="dropdown-item" href="leaderboard.html">Leaderboard</a></li>
+                        <li><a class="dropdown-item" href="taskpage.html">Add/Edit goals</a></li>
                     </ul>
                 </div>
 
@@ -116,10 +116,14 @@ class SiteNavbar extends HTMLElement {
 }
 
 //profile icon => profile
+// Run after the HTML document has fully loaded
 document.addEventListener("DOMContentLoaded", () => {
+  // Get the button element with id="prof"
   const profButton = document.getElementById("prof");
 
+  // Only proceed if the button exists
   if (profButton) {
+    // When the button is clicked, go to profile.html
     profButton.addEventListener("click", () => {
       window.location.href = "profile.html";
     });
