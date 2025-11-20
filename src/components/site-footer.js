@@ -3,9 +3,9 @@ class SiteFooter extends HTMLElement {
     this.innerHTML = `
             <footer class="navbar bg-success fixed-bottom">
                 <div class="container py-3 d-flex justify-content-around">
-            <span id="back_arrow" class="material-icons">west</span>
-				    <span id="home" class="material-icons">home</span>
-            <span id="setting" class="material-icons">settings</span>
+            <span id="back_arrow" class="material-icons" style="cursor: pointer">west</span>
+				    <span id="home" class="material-icons" style="cursor: pointer">home</span>
+            <span id="setting" class="material-icons" style="cursor: pointer">settings</span>
                 </div>
             </footer>
         `;

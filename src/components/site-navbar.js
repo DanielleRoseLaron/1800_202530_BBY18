@@ -39,9 +39,9 @@ class SiteNavbar extends HTMLElement {
                     </button>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="pet.html">Pet</a></li>
-                        <li><a class="dropdown-item" href="leaderboard.html">Leaderboard</a></li>
-                        <li><a class="dropdown-item" href="taskpage.html">Add/Edit goals</a></li>
+                        <li style="cursor: pointer"><a class="dropdown-item" href="pet.html">Pet</a></li>
+                        <li style="cursor: pointer"><a class="dropdown-item" href="leaderboard.html">Leaderboard</a></li>
+                        <li style="cursor: pointer"><a class="dropdown-item" href="taskpage.html">Add/Edit goals</a></li>
                     </ul>
                 </div>
 
@@ -59,6 +59,7 @@ class SiteNavbar extends HTMLElement {
                     src="images/proflie-image.jpg"
                     alt="Profile"
                     id="prof"
+                    style="cursor: pointer"
                     class="rounded-circle"
                     width="32"
                     height="32"
