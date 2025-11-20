@@ -13,7 +13,6 @@
 
 /* bootstrap colour override */
 
-
 /* index page */
 
 .CTA {
@@ -35,8 +34,8 @@
 .descriptionContainer {
   display: grid;
   grid-template-areas:
-    'rowone rowone'
-    'rowtwo rowtwo';
+    "rowone rowone"
+    "rowtwo rowtwo";
   grid-template-columns: 1fr 1fr;
   background-color: white;
   border: 2px solid white;
@@ -52,7 +51,6 @@
 
 .jumbotron img {
   border-radius: 50%;
-
 }
 
 .petsinfo {
@@ -69,8 +67,6 @@
 .petsinfo img {
   border-radius: 50%;
 }
-
-
 
 /* index page */
 
@@ -100,13 +96,15 @@ edit later
   background-color: #ffffff;
 }
 
-#placeholderlist, #placeholdergroups {
+#placeholderlist,
+#placeholdergroups {
   padding: 2vh;
 }
 
-
-#addbutton, #editGoalButton,
-#addGroupButton, #editGroupButton {
+#addbutton,
+#editGoalButton,
+#addGroupButton,
+#editGroupButton {
   padding-top: 12px;
   margin: 2vh;
 }
@@ -121,13 +119,13 @@ edit later
   margin: 5vh;
   border-radius: 10dvh;
   border: 2px rgb(226, 226, 226) solid;
-  background-color: rgb(226, 226, 226);
+  background-color: #09909f;
   list-style-position: inside;
   text-align: center;
+  color: white;
 }
 
 /* profile page end */
-
 
 /* addtask page */
 .goalForm {
