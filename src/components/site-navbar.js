@@ -39,7 +39,7 @@ class SiteNavbar extends HTMLElement {
                     </button>
 
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="taskpage.html">Home</a></li>
+                        <li><a class="dropdown-item" href="pet.html">Pet</a></li>
                         <li><a class="dropdown-item" href="leaderboard.html">Leaderboard</a></li>
                         <li><a class="dropdown-item" href="taskpage.html">Add/Edit goals</a></li>
                     </ul>
