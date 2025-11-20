@@ -22,7 +22,7 @@ onAuthStateChanged(auth, (user) => {
             return;
         }
 
-        //makes new html list element under "list"
+        //makes new html p element under "list"
         snapshot.forEach((docSnap) => {
             const data = docSnap.data();
             const p = document.createElement("p");
@@ -30,13 +30,13 @@ onAuthStateChanged(auth, (user) => {
             // show goal name
             p.textContent = data.name;
 
-            // Cross out goal css thingy
+            // Cross out goal css thingy. if true, then cross the text with a line
             if (data.completed) {
                 p.style.textDecoration = "line-through";
                 p.style.color = "red";
             }
 
-            // toggle complete on click
+            // toggle complete on click and store to firebase
             p.addEventListener("click", () => {
                 updateDoc(
                     doc(db, "users", user.uid, "tasks", docSnap.id),
@@ -55,7 +55,7 @@ onAuthStateChanged(auth, (user) => {
             del.addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                deleteDoc(doc(db, "users", user.uid, "tasks", docSnap.id));
+                deleteDoc(doc(db, "users", user.uid, "tasks", docSnap.id)); //deletes goal for the user
             });
 
             p.appendChild(del);
