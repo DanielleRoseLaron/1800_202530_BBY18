@@ -6,8 +6,8 @@ import {
 
 function showDashboard() {
 
-    //for the username
-    const nameElement = document.getElementById("name-goes-here"); // the <h1> element to display "Hello, {name}"
+    //
+    const nameElement = document.getElementById("name-goes-here");
     onAuthReady(async (user) => {
         if (!user) {
             // If no user is signed in → redirect back to login page.

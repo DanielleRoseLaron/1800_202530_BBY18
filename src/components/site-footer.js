@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (homeButton) {
     homeButton.addEventListener("click", () => {
-      window.location.href = "taskpage.html";
+      window.location.href = "grouppage.html";
     });
   }
 });
