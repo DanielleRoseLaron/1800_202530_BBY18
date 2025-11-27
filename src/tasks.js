@@ -1,5 +1,12 @@
-import { db } from './firebaseConfig.js';
-import { collection, onSnapshot, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { db, auth } from "./firebaseConfig.js";
+import {
+  collection,
+  onSnapshot,
+  updateDoc,
+  doc,
+  deleteDoc,
+  getDoc,
+} from "firebase/firestore";
 
 //get html element with id placeholderlist (the list that holds all goals)
 const goalList = document.getElementById("placeholderlist");
@@ -14,61 +21,82 @@ const goalsRef = collection(db, "groups", groupID, "tasks");
 
 //live updates on the goal list
 onSnapshot(goalsRef, (snapshot) => {
-    goalList.innerHTML = "";
-    if (snapshot.empty) {
-        const p = document.createElement("p");
-        p.textContent = "";
-        goalList.appendChild(p);
-        return;
+  goalList.innerHTML = "";
+  if (snapshot.empty) {
+    const p = document.createElement("p");
+    p.textContent = "";
+    goalList.appendChild(p);
+    return;
+  }
+
+  //makes new html p element under "list"
+  snapshot.forEach((docSnap) => {
+    const data = docSnap.data();
+    const p = document.createElement("p");
+
+    // show goal name
+    p.textContent = data.name;
+
+    // Cross out goal css thingy. if true, then cross the text with a line
+    if (data.completed) {
+      p.style.textDecoration = "line-through";
+      p.style.color = "red";
     }
 
-    //makes new html p element under "list"
-    snapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        const p = document.createElement("p");
+    // toggle complete on click and store to firebase
+    p.addEventListener("click", () => {
+      updateDoc(doc(db, "groups", groupID, "tasks", docSnap.id), {
+        completed: !data.completed,
+      });
+    });
 
-        // show goal name
-        p.textContent = data.name;
+    //adds a point for the user when a goal is completed
+    p.addEventListener("click", async () => {
+      if (data.completed === false) {
+        const user = auth.currentUser;
+        if (!user) return;
 
-        // Cross out goal css thingy. if true, then cross the text with a line
-        if (data.completed) {
-            p.style.textDecoration = "line-through";
-            p.style.color = "red";
+        const userRef = doc(db, "users", user.uid);
+        const snap = await getDoc(userRef);
+
+        let currentPoints;
+
+        if (snap.exists()) {
+          const data = snap.data();
+          currentPoints = data.points ? data.points : 0;
+        } else {
+          currentPoints = 0;
         }
 
-        // toggle complete on click and store to firebase
-        p.addEventListener("click", () => {
-            updateDoc(
-                doc(db, "groups", groupID, "tasks", docSnap.id),
-                { completed: !data.completed }
-            );
-        });
-
-        // delete button css
-        const del = document.createElement("span");
-        del.textContent = " ×";
-        del.style.color = "red";
-        del.style.cursor = "pointer";
-        del.style.fontWeight = "bold";
-
-        //delete the goal from the list and firebase
-        del.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            deleteDoc(doc(db, "groups", groupID, "tasks", docSnap.id)); //deletes goal for the user
-        });
-
-        p.appendChild(del);
-        goalList.appendChild(p);
+        await updateDoc(userRef, { points: currentPoints + 1 });
+      }
     });
+
+    // delete button css
+    const del = document.createElement("span");
+    del.textContent = " ×";
+    del.style.color = "red";
+    del.style.cursor = "pointer";
+    del.style.fontWeight = "bold";
+
+    //delete the goal from the list and firebase
+    del.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      deleteDoc(doc(db, "groups", groupID, "tasks", docSnap.id)); //deletes goal for the user
+    });
+
+    p.appendChild(del);
+    goalList.appendChild(p);
+  });
 });
 
 // Add task button
-document.addEventListener('DOMContentLoaded', () => {
-    const addTaskBtn = document.getElementById('addbutton');
-    if (addTaskBtn) {
-        addTaskBtn.addEventListener('click', () => {
-            window.location.href = `addtask.html?groupID=${groupID}`;
-        });
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const addTaskBtn = document.getElementById("addbutton");
+  if (addTaskBtn) {
+    addTaskBtn.addEventListener("click", () => {
+      window.location.href = `addtask.html?groupID=${groupID}`;
+    });
+  }
 });
