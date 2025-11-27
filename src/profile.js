@@ -12,67 +12,72 @@ import { auth, db } from "./firebaseConfig.js";
 // Form field IDs: nameInput, schoolInput, cityInput
 // -------------------------------------------------------------
 function populateUserInfo() {
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            try {
-                // reference to the user document
-                const userRef = doc(db, "users", user.uid);
-                const userSnap = await getDoc(userRef);
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      try {
+        // reference to the user document
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
 
-                if (userSnap.exists()) {
-                    const userData = userSnap.data();
+        if (userSnap.exists()) {
+          const userData = userSnap.data();
 
-                    const { name = "", school = "", city = "", term = ""} = userData;
+          const { name = "", school = "", city = "", term = "" } = userData;
 
-                    document.getElementById("nameInput").value = name;
-                    document.getElementById("schoolInput").value = school;
-                    document.getElementById("cityInput").value = city;
-                    document.getElementById("termInput").value = term;
-                } else {
-                    console.log("No such document!");
-                }
-            } catch (error) {
-                console.error("Error getting user document:", error);
-            }
+          document.getElementById("nameInput").value = name;
+          document.getElementById("schoolInput").value = school;
+          document.getElementById("cityInput").value = city;
+          document.getElementById("termInput").value = term;
         } else {
-            console.log("No user is signed in");
+          console.log("No such document!");
         }
-    });
+      } catch (error) {
+        console.error("Error getting user document:", error);
+      }
+    } else {
+      console.log("No user is signed in");
+    }
+  });
 }
 
-//call the function to run it 
+//call the function to run it
 populateUserInfo();
 
 //-------------------------------------------------------------
 // Function to enable editing of user info form fields
-//------------------------------------------------------------- 
-document.querySelector('.editButton').addEventListener('click', editUserInfo);
+//-------------------------------------------------------------
+document.querySelector("#editButton").addEventListener("click", editUserInfo);
 function editUserInfo() {
-    //Enable the form fields
-    document.getElementById('personalInfoFields').disabled = false;
+  //Enable the form fields
+  document.getElementById("personalInfoFields").disabled = false;
 }
 
 //-------------------------------------------------------------
 // Function to save updated user info from the profile form
 //-------------------------------------------------------------
-document.querySelector('#saveButton').addEventListener('click', saveUserInfo);   //Add event listener for save button
+document.querySelector("#saveButton").addEventListener("click", saveUserInfo); //Add event listener for save button
 async function saveUserInfo() {
-    const user = auth.currentUser;   // ✅ get the currently logged-in user
-    if (!user) {
-        alert("No user is signed in. Please log in first.");
-        return;
-    }
-    //enter code here
+  const user = auth.currentUser; // ✅ get the currently logged-in user
+  if (!user) {
+    alert("No user is signed in. Please log in first.");
+    return;
+  }
 
-    //a) get user entered values
-    const userName = document.getElementById('nameInput').value;       //get the value of the field with id="nameInput"
-    const userCity = document.getElementById('cityInput').value; 
-    const userSchool = document.getElementById('schoolInput').value;     //get the value of the field with id="schoolInput"
-    const userProgram = document.getElementById('programInput').value;      //get the value of the field with id="cityInput"
+  //a) get user entered values
+  const userName = document.getElementById("nameInput").value; //get the value of the field with id="nameInput"
+  const userCity = document.getElementById("cityInput").value; //get the value of the field with id="cityInput"
+  const userSchool = document.getElementById("schoolInput").value; //get the value of the field with id="schoolInput"
+  const userProgram = document.getElementById("programInput").value; //get the value of the field with id="programInput"
 
-    //b) update user's document in Firestore
-    await updateUserDocument(user.uid, userName, userSchool, userCity, userProgram);
-    //c) disable edit 
+  //b) update user's document in Firestore
+  await updateUserDocument(
+    user.uid,
+    userName,
+    userSchool,
+    userCity,
+    userProgram
+  );
+  //c) disable edit
 }
 
 //-------------------------------------------------------------
@@ -81,14 +86,13 @@ async function saveUserInfo() {
 //   uid (string)  – user’s UID
 //   name, school, city (strings)
 //-------------------------------------------------------------
-async function updateUserDocument(uid, name, school, city, term) {
+async function updateUserDocument(uid, name, school, city, program) {
   try {
     const userRef = doc(db, "users", uid);
-    await updateDoc(userRef, { name, school, city, term});
+    await updateDoc(userRef, { name, school, city, program });
     console.log("User document successfully updated!");
-        document.getElementById('personalInfoFields').disabled = true;
+    document.getElementById("personalInfoFields").disabled = true;
   } catch (error) {
     console.error("Error updating user document:", error);
   }
 }
-
