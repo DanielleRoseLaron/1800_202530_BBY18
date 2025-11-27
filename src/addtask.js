@@ -7,12 +7,15 @@ const auth = getAuth();
 
 // Waits to load content at the right time
 document.addEventListener("DOMContentLoaded", () => {
-  //DOM elements
-  const form = document.getElementById("goalForm");
-  const input = document.getElementById("goalInput");
+    //DOM elements
+    const form = document.getElementById("goalForm");
+    const input = document.getElementById("goalInput");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const groupID = urlParams.get("groupID");
 
     onAuthStateChanged(auth, (user) => {
-        if (!user) 
+        if (!user)
             return;
 
         form.addEventListener('submit', async (e) => {
@@ -33,12 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 //makes a new collection if it doesn't exist,
                 //otherwise add to the goals collection
-
                 //it's currently outside right now and not tied to
                 //a user as a sub collection
-                const goalsRef = collection(db, 'users', user.uid, 'tasks');
+                const goalsRef = collection(db, 'groups', groupID, 'tasks');
                 await addDoc(goalsRef, { name: goalName, completed: false });
-                window.location.href = `taskpage.html`;
+                window.location.href = `taskpage.html?groupID=${groupID}`;
             } catch (error) {
                 console.error('Error adding goal:', error);
             }

@@ -44,17 +44,6 @@ class SiteNavbar extends HTMLElement {
                         <li style="cursor: pointer"><a class="dropdown-item" href="taskpage.html">Add/Edit goals</a></li>
                     </ul>
                 </div>
-
-                <form class="d-flex" role="search">
-                    <input
-                        class="form-control me-2"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                    />
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-
                 <img
                     src="images/proflie-image.jpg"
                     alt="Profile"
