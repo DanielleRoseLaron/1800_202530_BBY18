@@ -275,28 +275,28 @@ function renderGame(){
 /* ---------------------------
   Shop
   ---------------------------- */
-function renderShopGrid(){
-  shopGrid.innerHTML = '';
-  SHOP_ITEMS.forEach(it=>{
-    const card = document.createElement('div'); card.className='shop-item';
-    const title = document.createElement('div'); title.textContent = it.name; title.style.fontWeight='700';
-    const desc = document.createElement('div'); desc.textContent = it.type === 'food' ? 'Restores food' : it.type==='pet' ? `Unlock ${it.pet}` : 'Useful item';
-    const meta = document.createElement('div'); meta.style.display='flex'; meta.style.justifyContent='space-between'; meta.style.marginTop='8px';
-    const price = document.createElement('div'); price.textContent = it.cost + ' pts';
-    const btn = document.createElement('button'); btn.textContent = 'Buy'; btn.onclick = ()=> buyItem(it);
-    meta.appendChild(price); meta.appendChild(btn);
-    card.appendChild(title); card.appendChild(desc); card.appendChild(meta);
-    shopGrid.appendChild(card);
+function renderShopGrid(){ 
+  shopGrid.innerHTML = ''; 
+  SHOP_ITEMS.forEach(it=>{ 
+    const card = document.createElement('div'); card.className='shop-item'; 
+    const title = document.createElement('div'); title.textContent = it.name; title.style.fontWeight='700'; 
+    const desc = document.createElement('div'); desc.textContent = it.type === 'food' ? 'Restores food' : it.type==='pet' ? `Unlock ${it.pet}` : 'Useful item'; 
+    const meta = document.createElement('div'); meta.style.display='flex'; meta.style.justifyContent='space-between'; meta.style.marginTop='8px'; 
+    const price = document.createElement('div'); price.textContent = it.cost + ' pts'; 
+    const btn = document.createElement('button'); btn.textContent = 'Buy'; btn.onclick = ()=> buyItem(it); 
+    meta.appendChild(price); meta.appendChild(btn); 
+    card.appendChild(title); card.appendChild(desc); card.appendChild(meta); 
+    shopGrid.appendChild(card); 
   });
 }
 function buyItem(it){
-  if(state.points < it.cost){ showToast('Not enough points'); return; }
-  state.points -= it.cost;
-  if(it.type === 'food'){ state.inventory.food = (state.inventory.food||0) + (it.payload||1); showToast('Food bought'); }
-  else if(it.type === 'toy'){ state.inventory.toys.push(it.id); showToast('Toy bought'); }
-  else if(it.type === 'pet'){ if(!state.owned.includes(it.pet)){ state.owned.push(it.pet); showToast(it.pet + ' unlocked'); } else showToast('Already own'); }
-  save(); renderChoose(); renderAvatarSelection();
-}
+  if(state.points < it.cost){ showToast('Not enough points'); return; } 
+  state.points -= it.cost; 
+  if(it.type === 'food'){ state.inventory.food = (state.inventory.food||0) + (it.payload||1); showToast('Food bought'); } 
+  else if(it.type === 'toy'){ state.inventory.toys.push(it.id); showToast('Toy bought'); } 
+  else if(it.type === 'pet'){ if(!state.owned.includes(it.pet)){ state.owned.push(it.pet); showToast(it.pet + ' unlocked'); } else showToast('Already own'); } 
+  save(); renderChoose(); renderAvatarSelection(); 
+} 
 
 /* ---------------------------
   Actions
