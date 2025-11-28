@@ -13,6 +13,19 @@
 
 /* bootstrap colour override */
 
+/* bg */
+
+body {
+  background-image: url(images/mainbg.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+
+/* bg */
+
 /* index page */
 
 .CTA {
