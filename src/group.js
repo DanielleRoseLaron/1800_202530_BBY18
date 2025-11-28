@@ -19,6 +19,7 @@ onSnapshot(groupsRef, (snapshot) => {
 
         p.textContent = data.name;
         p.addEventListener("click", () => {
+            //go to the specific taskpage under specific group ID
             window.location.href = `taskpage.html?groupID=${docSnap.id}`;
         });
 
