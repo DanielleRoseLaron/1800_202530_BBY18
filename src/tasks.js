@@ -126,8 +126,9 @@ onSnapshot(goalsRef, (snapshot) => {
 
     // delete button css
     const del = document.createElement("span");
-    del.textContent = "x";
-    del.style.color = "red";
+    del.classList.add("material-icons");
+    del.textContent = "delete";
+    del.style.color = "#212529";
     del.style.cursor = "pointer";
     del.style.fontWeight = "bold";
 
