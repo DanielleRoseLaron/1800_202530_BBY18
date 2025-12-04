@@ -1,8 +1,8 @@
-# Elmo Hikes
+# Taskify
 
 ## Overview
 
-Elmo Hikes is a client-side JavaScript web application that helps users discover and explore hiking trails. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.
+Taskify is a client-side JavaScript web application that helps users track their tasks with other BCIT students. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.
 
 Developed for the COMP 1800 course, this project applies User-Centred Design practices and agile project management, and demonstrates integration with Firebase backend services for storing user favorites.
 
@@ -10,10 +10,9 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 
 ## Features
 
-- Browse a list of curated hiking trails with images and details
-- Mark and unmark trails as favorites
-- View a personalized list of favorite hikes
-- Responsive design for desktop and mobile
+- Pick set groups
+- 
+
 
 ---
 
@@ -40,7 +39,7 @@ Example:
 ## Project Structure
 
 ```
-elmo-hikes/
+1800_202530_BBY18/
 ├── src/
 │   ├── main.js
 ├── styles/
@@ -63,7 +62,6 @@ elmo-hikes/
 
 ## Acknowledgments
 
-- Trail data and images are for demonstration purposes only.
 - Code snippets were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
 - Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
 
@@ -73,14 +71,9 @@ elmo-hikes/
 
 ### Limitations
 
-- Limited trail details (e.g., no live trail conditions).
-- Accessibility features can be further improved.
 
 ### Future Work
 
-- Implement map view and trailhead directions.
-- Add filtering and sorting options (e.g., by difficulty, distance).
-- Create a dark mode for better usability in low-light conditions.
 
 ---
 
