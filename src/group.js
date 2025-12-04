@@ -23,6 +23,27 @@ onSnapshot(groupsRef, (snapshot) => {
       window.location.href = `taskpage.html?groupID=${docSnap.id}`;
     });
 
+    onSnapshot(groupsRef, (snapshot) => {
+      const groupList = document.getElementById("group-list");
+      groupList.innerHTML = "";
+
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+
+        const groupItem = document.createElement("div");
+        groupItem.classList.add("border", "p-2", "mb-2", "bg-light", "rounded");
+
+        const link = document.createElement("a");
+        link.href = `tasks.html?groupID=${docSnap.id}`;
+        link.textContent = data.name;
+        link.style.cursor = "pointer";
+        link.classList.add("fw-bold");
+
+        groupItem.appendChild(link);
+        groupList.appendChild(groupItem);
+      });
+    });
+
     //Commented out delete button because we need 4 hardcoded groupss
 
     // const del = document.createElement("span");
