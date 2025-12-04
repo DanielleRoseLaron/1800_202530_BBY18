@@ -3,7 +3,7 @@
   background-color: #09909f !important;
 }
 
-.btn-primary {
+.btn-primary, .btn {
   background-color: #0a4e89 !important;
 }
 
@@ -13,6 +13,14 @@
 
 /* bootstrap colour override */
 
+/* img */
+.pfp {
+  margin-top: 40px;
+  border-radius: 100%;
+}
+
+/* img */
+
 /* bg */
 
 body {
@@ -20,7 +28,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 900px;
 }
 
 
@@ -125,14 +133,21 @@ edit later
 /* task page end */
 
 /*profile page start */
+
+.settings {
+  border-radius: 1dvh;
+  margin: 40px;
+  border: 5px #ffffff solid;
+  background-color: #ffffff;
+}
+
 .acc_button,
-.progress_button,
 .log_button {
   padding-top: 2vh;
-  margin: 5vh;
+  margin: 6vh;
   border-radius: 10dvh;
   border: 2px rgb(226, 226, 226) solid;
-  background-color: #09909f;
+  background-color: #23292a;
   list-style-position: inside;
   text-align: center;
   color: white;
@@ -146,3 +161,13 @@ edit later
 }
 
 /* addtask page */
+
+/* Leaderboard */
+.leaderboard {
+  border-radius: 1dvh;
+  margin: 60px;
+  border: 5px #ffffff solid;
+  background-color: #ffffff;
+}
+
+/* Leaderboard */
