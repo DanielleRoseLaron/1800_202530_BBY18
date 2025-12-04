@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            const dueDate = document.getElementById("goalDate").value || null;
+
             //If successful, the goal is then added to a goals collection
             //and re-direct to the taskpage.html. The goals made will then
             //show up on the main task page
@@ -39,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 //it's currently outside right now and not tied to
                 //a user as a sub collection
                 const goalsRef = collection(db, 'groups', groupID, 'tasks');
-                await addDoc(goalsRef, { name: goalName, completed: false });
+                await addDoc(goalsRef, { name: goalName, completed: false, dueDate: dueDate});
                 window.location.href = `taskpage.html?groupID=${groupID}`;
             } catch (error) {
                 console.error('Error adding goal:', error);

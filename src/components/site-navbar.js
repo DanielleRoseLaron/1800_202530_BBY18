@@ -1,8 +1,9 @@
 class SiteNavbar extends HTMLElement {
   constructor() {
     super();
-    this.renderNavbar();
-    // this.renderAuthControls();
+    window.addEventListener("DOMContentLoaded", () => {
+      this.renderNavbar();
+    });
   }
 
   renderNavbar() {

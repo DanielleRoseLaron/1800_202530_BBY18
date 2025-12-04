@@ -81,11 +81,19 @@ onSnapshot(goalsRef, (snapshot) => {
     taskText.classList.add("form-check-label");
     taskText.setAttribute("for", `task-${docSnap.id}`);
     taskText.textContent = data.name;
+
+    if (data.dueDate) {
+      const dateSpan = document.createElement("span");
+      dateSpan.textContent = `  (due: ${data.dueDate})`;
+      dateSpan.style.color = "grey";
+      taskText.appendChild(dateSpan);
+    }
+
     taskText.style.flex = "1";
 
     if (data.completed) {
       taskText.style.textDecoration = "line-through";
-      taskText.style.color = "red";
+      taskText.style.color = "grey";
     }
 
     const toggleCompletion = async () => {
@@ -110,7 +118,7 @@ onSnapshot(goalsRef, (snapshot) => {
           currentPoints = 0;
         }
 
-        await updateDoc(userRef, { points: currentPoints + 1 });
+        await updateDoc(userRef, { points: currentPoints + 10 });
       }
 
       //update local data for future toggles
