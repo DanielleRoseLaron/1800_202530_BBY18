@@ -19,40 +19,83 @@ const groupID = urlParams.get("groupID");
 //reference the goals (tasks) collection in firestore
 const goalsRef = collection(db, "groups", groupID, "tasks");
 
-//live updates on the goal list
+function listenToGroupName() {
+  if (!groupID) return;
+
+  const groupRef = doc(db, "groups", groupID);
+
+  onSnapshot(groupRef, (groupSnap) => {
+    if (groupSnap.exists()) {
+      const groupData = groupSnap.data();
+      const header = document.getElementById("group-name-goes-here");
+      if (header && groupData.name) {
+        header.textContent = `Welcome to ${groupData.name}`;
+      }
+    } else {
+      console.error("Group not found.");
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", listenToGroupName);
+
+// Live updates on the goal list
 onSnapshot(goalsRef, (snapshot) => {
   goalList.innerHTML = "";
+
   if (snapshot.empty) {
     const p = document.createElement("p");
-    p.textContent = "";
+    p.textContent = "Create a task by clicking the + button!";
+    p.classList.add("text-muted", "text-center", "mt-3");
     goalList.appendChild(p);
     return;
   }
 
-  //makes new html p element under "list"
   snapshot.forEach((docSnap) => {
     const data = docSnap.data();
-    const p = document.createElement("p");
 
-    // show goal name
-    p.textContent = data.name;
+    const container = document.createElement("div");
+    container.classList.add(
+      "d-flex",
+      "align-items-center",
+      "border",
+      "rounded",
+      "p-2",
+      "mb-2",
+      "bg-white"
+    );
 
-    // Cross out goal css thingy. if true, then cross the text with a line
+    const checkWrap = document.createElement("div");
+    checkWrap.classList.add("form-check", "me-2");
+
+    //Checkboxes
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("form-check-input");
+    checkbox.id = `task-${docSnap.id}`;
+    checkbox.checked = data.completed;
+
+    checkWrap.appendChild(checkbox);
+
+    const taskText = document.createElement("label");
+    taskText.classList.add("form-check-label");
+    taskText.setAttribute("for", `task-${docSnap.id}`);
+    taskText.textContent = data.name;
+    taskText.style.flex = "1";
+
     if (data.completed) {
-      p.style.textDecoration = "line-through";
-      p.style.color = "red";
+      taskText.style.textDecoration = "line-through";
+      taskText.style.color = "red";
     }
 
-    // toggle complete on click and store to firebase
-    p.addEventListener("click", () => {
-      updateDoc(doc(db, "groups", groupID, "tasks", docSnap.id), {
-        completed: !data.completed,
+    const toggleCompletion = async () => {
+      const newStatus = !data.completed;
+      await updateDoc(doc(db, "groups", groupID, "tasks", docSnap.id), {
+        completed: newStatus,
       });
-    });
 
-    //adds a point for the user when a goal is completed
-    p.addEventListener("click", async () => {
-      if (data.completed === false) {
+      //adds a point for the user when a goal is completed
+      if (data.completed === false && newStatus === true) {
         const user = auth.currentUser;
         if (!user) return;
 
@@ -60,34 +103,45 @@ onSnapshot(goalsRef, (snapshot) => {
         const snap = await getDoc(userRef);
 
         let currentPoints;
-
         if (snap.exists()) {
-          const data = snap.data();
-          currentPoints = data.points ? data.points : 0;
+          const userData = snap.data();
+          currentPoints = userData.points ? userData.points : 0;
         } else {
           currentPoints = 0;
         }
 
         await updateDoc(userRef, { points: currentPoints + 1 });
       }
+
+      //update local data for future toggles
+      data.completed = newStatus;
+    };
+
+    //Checkbox is clicked
+    taskText.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleCompletion();
     });
+    checkbox.addEventListener("change", toggleCompletion);
 
     // delete button css
     const del = document.createElement("span");
-    del.textContent = " ×";
+    del.textContent = "x";
     del.style.color = "red";
     del.style.cursor = "pointer";
     del.style.fontWeight = "bold";
 
-    //delete the goal from the list and firebase
     del.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      deleteDoc(doc(db, "groups", groupID, "tasks", docSnap.id)); //deletes goal for the user
+      deleteDoc(doc(db, "groups", groupID, "tasks", docSnap.id));
     });
 
-    p.appendChild(del);
-    goalList.appendChild(p);
+    container.appendChild(checkWrap);
+    container.appendChild(taskText);
+    container.appendChild(del);
+
+    goalList.appendChild(container);
   });
 });
 
