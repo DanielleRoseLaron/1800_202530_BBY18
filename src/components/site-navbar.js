@@ -41,7 +41,7 @@ class SiteNavbar extends HTMLElement {
                     <ul class="dropdown-menu">
                         <li style="cursor: pointer"><a class="dropdown-item" href="pet.html">Pet</a></li>
                         <li style="cursor: pointer"><a class="dropdown-item" href="leaderboard.html">Leaderboard</a></li>
-                        <li style="cursor: pointer"><a class="dropdown-item" href="taskpage.html">Add/Edit goals</a></li>
+                        <li style="cursor: pointer"><a class="dropdown-item" href="grouppage.html">Add/Edit goals</a></li>
                     </ul>
                 </div>
                 <img
