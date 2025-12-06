@@ -65,7 +65,7 @@ body {
 
 .jumbotron {
   grid-area: rowone;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: space-between;
 }
@@ -76,7 +76,7 @@ body {
 
 .petsinfo {
   grid-area: rowtwo;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: space-between;
 }
